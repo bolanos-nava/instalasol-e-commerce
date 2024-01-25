@@ -28,14 +28,16 @@ module.exports = {
   settings: { react: { version: 'detect' } },
   rules: {
     'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off',
     'react/jsx-one-expression-per-line': 'off',
+    'react/no-unknown-property': ['error', { ignore: ['css'] }],
     'import/no-extraneous-dependencies': 'off',
-    'react/jsx-no-target-blank': 'warn',
+    'import/prefer-default-export': 'off',
     'padded-blocks': 'off',
     'prettier/prettier': 'off',
+    'react/jsx-no-target-blank': 'warn',
     'no-unused-vars': 'warn',
     'no-unused-expressions': 'warn',
-    'react/prop-types': 'off',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'react/self-closing-comp': [
       'warn',
