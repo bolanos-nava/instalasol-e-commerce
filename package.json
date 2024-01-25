@@ -12,7 +12,7 @@
     "precommit": "lint-staged",
     "prepare": "husky install"
   },
-  "homepage": "https://bolanos-nava.github.io/instalasol-e-store",
+  "homepage": "https://bolanos-nava.github.io/instalasol-e-commerce",
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
       "prettier --write",
@@ -45,6 +45,7 @@
     "@types/react-dom": "^18.2.17",
     "@vitejs/plugin-react": "^4.2.1",
     "babel-plugin-styled-components": "^2.1.4",
+    "dotenv": "^16.4.1",
     "eslint": "^8.56.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",
