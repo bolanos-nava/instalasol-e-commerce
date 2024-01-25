@@ -29,6 +29,7 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/jsx-one-expression-per-line': 'off',
+    'import/no-extraneous-dependencies': 'off',
     'react/jsx-no-target-blank': 'warn',
     'padded-blocks': 'off',
     'prettier/prettier': 'off',
@@ -36,5 +37,12 @@ module.exports = {
     'no-unused-expressions': 'warn',
     'react/prop-types': 'off',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    'react/self-closing-comp': [
+      'warn',
+      {
+        component: true,
+        html: true,
+      },
+    ],
   },
 };
