@@ -5,11 +5,11 @@ import { CircularContainer } from '../styled-components';
 export function CartWidget({ count = 10 }) {
   return (
     <CircularContainer
+      as="button"
       css={`
+        --diameter: 3rem;
         background-color: #13a7e2;
         position: relative;
-        width: 3rem;
-        height: 3rem;
       `}
     >
       <FontAwesomeIcon icon={faCartShopping} />
