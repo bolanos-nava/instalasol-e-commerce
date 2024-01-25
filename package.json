@@ -12,6 +12,7 @@
     "precommit": "lint-staged",
     "prepare": "husky install"
   },
+  "homepage": "https://bolanos-nava.github.io/instalasol-e-store",
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
       "prettier --write",
