@@ -34,7 +34,7 @@ export function NavBar({ children }) {
             object-fit: contain;
             height: 100%;
           `}
-          src={`${import.meta.env.BASE_URL}/images/instalasol-logo.png`}
+          src={`${process.env.BASE_URL}/images/instalasol-logo.png`}
           alt="InstalaSol logo"
         />
       </NavbarBrand>

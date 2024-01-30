@@ -6,6 +6,8 @@ jobs:
   # Build app job
   build:
     runs-on: ubuntu-latest
+    env:
+      BASE_URL: /instalasol-e-commerce/
 
     strategy:
       matrix:
