@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Collapse,
   DropdownItem,
@@ -11,6 +12,7 @@ import {
   NavbarToggler,
   UncontrolledDropdown,
 } from 'reactstrap';
+import { CartWidget } from '../CartWidget';
 
 export function NavBar({ children }) {
   const [isOpenNavBar, setIsOpenNavBar] = useState(false);
@@ -23,11 +25,11 @@ export function NavBar({ children }) {
       `}
       expand="md"
     >
-      <NavbarBrand
+      <Link
         css={`
           height: 5rem;
         `}
-        href="/"
+        to="/"
       >
         <img
           css={`
@@ -37,7 +39,7 @@ export function NavBar({ children }) {
           src={`${process.env.BASE_URL}/images/instalasol-logo.png`}
           alt="InstalaSol logo"
         />
-      </NavbarBrand>
+      </Link>
 
       <NavbarToggler onClick={toggleNavbar} />
 
@@ -52,7 +54,7 @@ export function NavBar({ children }) {
               <DropdownItem>Sistemas aislados</DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
-          <UncontrolledDropdown>
+          <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret>
               Productos
             </DropdownToggle>
@@ -65,7 +67,7 @@ export function NavBar({ children }) {
         </Nav>
       </Collapse>
 
-      <NavbarText>{children}</NavbarText>
+      <CartWidget />
     </Navbar>
   );
 }
