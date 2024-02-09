@@ -19,12 +19,7 @@ export function NavBar({ children }) {
 
   const toggleNavbar = () => setIsOpenNavBar((state) => !state);
   return (
-    <Navbar
-      css={`
-        background-color: #9ca5b4;
-      `}
-      expand="md"
-    >
+    <Navbar className="bg-tw-primary" expand="md">
       <Link
         css={`
           height: 5rem;

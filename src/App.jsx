@@ -1,5 +1,3 @@
-import './scss/styles.scss';
-
 import { RouterProvider, createBrowserRouter, useRouteError } from 'react-router-dom';
 import { MainLayout } from './components/Layouts';
 import { ItemDetail, ItemListContainer } from './components/Items';
@@ -8,7 +6,7 @@ function ErrorBoundary() {
   const error = useRouteError();
   // eslint-disable-next-line no-console
   console.error(error);
-  return <div>Dang!</div>;
+  return <div className="text-3xl text-cyan-700">Dang!</div>;
 }
 
 const router = createBrowserRouter(
