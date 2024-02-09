@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:wght@400;500;600;700;800&display=swap');
+
+$colors: (
+  // COLOR PALETTE
+  // for header, footer, etc. (brand color)
+  primary: #091c3c,
+  // color with good contrast to the primary
+  primary-contrast: #064061,
+  // contrasting color for use in texts over primary
+  primary-text: #e3e3e3,
+
+  // secondary color: emphasis in sidebar, etc.
+  secondary: #a24614,
+  // emphasis for secondary color
+  secondary-emphasis: #ef7c14,
+
+  // Backgrounds
+  bg-primary: #e4effb,
+
+  // Buttons
+  buttons:
+    (
+      primary: #e08b41,
+      primary-text: #2b2b2b,
+      primary-hover: #f88622,
+    ),
+
+  // Inputs
+  inputs:
+    (
+      emphasis: darken(#c5c0c0, 10%),
+    ),
+
+  // Random named colors
+  gray-coco: #c5c0c0
+);
+
+$colors-variations: ();
+
+@each $color in 'primary', 'secondary', 'bg-primary' {
+  $colors-variations: map-merge(
+    generate-color-brightness-variations(map-get($colors, $color), $color),
+    $colors-variations
+  );
+}
+
+$fonts: (
+  titles: 'Asap',
+  body: 'Open Sans',
+);
+
+$font-size: (
+  base: 16px,
+  header: (
+    main: 1.6rem,
+    secondary: 0.9rem,
+  ),
+  homepage: (
+    base: 1.1rem,
+  ),
+);
+
+$sizes: (
+  sidebar: 200px,
+);
+
+$breakpoints: (
+  photocards-min: 400px,
+  mobile-min: 576px,
+  mobile-max: 575px,
+  tablet-min: 768px,
+  tablet-max: 767px,
+  desktop-min: 992px,
+  desktop-max: 991px,
+);
+
+$box-shadows: (
+  offset: 5px,
+  radii: (
+    blur: 15px,
+    spread: -3px,
+  ),
+  colors: (
+    color-channel: #000,
+    alpha-channel: 0.2,
+  ),
+);

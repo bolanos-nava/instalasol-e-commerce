@@ -1,3 +1,5 @@
+import './scss/styles.scss';
+
 import { RouterProvider, createBrowserRouter, useRouteError } from 'react-router-dom';
 import { MainLayout } from './components/Layouts';
 import { ItemDetail, ItemListContainer } from './components/Items';

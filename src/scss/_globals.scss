@@ -1,0 +1,89 @@
+/* Putting height: 100% in the body and min-height: 100% is a combination that makes your page have a height that covers all the available height of the device, without leaving empty space at the end of the page, and even if you don't have content in the page. Additionally, by making body a flex container we can tell the inner containers to take all available space with the use of flex: 1  */
+html {
+  height: 100%;
+  font-size: map-get($font-size, base);
+}
+body {
+  position: relative;
+  min-height: 100%;
+  @include flex(column, space-between);
+  background-color: rgba(map-get($colors, bg-primary), 0.5);
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: map-get($fonts, titles), sans-serif;
+  font-weight: 600;
+}
+ul:not(.list-styled) {
+  list-style-type: none;
+}
+
+a {
+  &,
+  &:link,
+  &:visited,
+  &:hover {
+    text-decoration: none;
+    transition: all 0.2s ease-in-out;
+  }
+}
+
+img {
+  object-fit: cover;
+  width: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  border: 5px solid white;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #7b7b7b;
+  background-clip: padding-box;
+  border: 0.05em solid #eeeeee;
+}
+::-webkit-scrollbar-track {
+  background-color: #bbbbbb;
+}
+/* Buttons */
+::-webkit-scrollbar-button:single-button {
+  background-color: #bbbbbb;
+  display: block;
+  border-style: solid;
+  height: 13px;
+  width: 16px;
+}
+/* Up */
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+  border-width: 0 8px 8px 8px;
+  border-color: transparent transparent #555555 transparent;
+}
+
+::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
+  border-color: transparent transparent #777777 transparent;
+}
+/* Down */
+::-webkit-scrollbar-button:single-button:vertical:increment {
+  border-width: 8px 8px 0 8px;
+  border-color: #555555 transparent transparent transparent;
+}
+
+::-webkit-scrollbar-button:vertical:single-button:increment:hover {
+  border-color: #777777 transparent transparent transparent;
+}
+
+.tablet-hidden {
+  display: none;
+  @media (min-width: map-get($breakpoints, tablet-min)) {
+    display: block;
+  }
+}
+
+.body-container {
+  @include flex($flex: 1);
+  position: relative;
+}

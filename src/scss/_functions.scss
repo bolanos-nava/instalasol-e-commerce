@@ -1,0 +1,13 @@
+@use "sass:map";
+
+@function generate-color-brightness-variations($color, $base-name) {
+  $colors: ();
+  @for $i from 1 to 10 {
+    $key-dark: "#{$base-name}-dark-#{$i}";
+    $key-light: "#{$base-name}-light-#{$i}";
+    $colors: map.set($colors, #{$key-dark}, darken($color, $i * 5%));
+    $colors: map.set($colors, #{$key-light}, lighten($color, $i * 5%));
+  }
+
+  @return $colors;
+}
