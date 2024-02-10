@@ -3,6 +3,12 @@ export default {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      boxShadow: {
+        standard: {
+          DEFAULT: '5px 15px -3px rgba(0, 0, 0, 0.2)',
+          inset: 'inset 5px 15px -3px rgba(0, 0, 0, 0.2)',
+        },
+      },
       colors: {
         'tw-primary': {
           DEFAULT: 'var(--color-primary)',
