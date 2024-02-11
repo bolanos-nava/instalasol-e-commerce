@@ -45,6 +45,7 @@ module.exports = {
       'after',
       { overrides: { '?': 'after', ':': 'before' } },
     ],
+    'react-hooks/exhaustive-deps': 'warn',
     indent: ['warn', 2, { ignoredNodes: ['ConditionalExpressions'] }],
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
@@ -52,5 +53,8 @@ module.exports = {
     'prettier/prettier': 'off',
     'no-unused-vars': 'warn',
     'no-unused-expressions': 'warn',
+    'nonblock-statement-body-position': 'off',
+    'no-trailing-spaces': 'off',
+    'lines-between-class-members': 'off',
   },
 };
