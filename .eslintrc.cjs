@@ -45,7 +45,7 @@ module.exports = {
       'after',
       { overrides: { '?': 'after', ':': 'before' } },
     ],
-    indent: ['warn', 2, { ignoreNodes: ['ConditionalExpressions'] }],
+    indent: ['warn', 2, { ignoredNodes: ['ConditionalExpressions'] }],
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
     'padded-blocks': 'off',
