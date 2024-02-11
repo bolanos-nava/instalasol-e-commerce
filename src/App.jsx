@@ -1,6 +1,6 @@
 import { RouterProvider, createBrowserRouter, useRouteError } from 'react-router-dom';
 import { MainLayout } from './components/Layouts';
-import { ItemDetail, ItemListContainer } from './components/Items';
+import { ItemDetailContainer, ItemListContainer } from './components/Items';
 
 function ErrorBoundary() {
   const error = useRouteError();
@@ -22,7 +22,7 @@ const router = createBrowserRouter(
         },
         {
           path: 'item/:productId',
-          element: <ItemDetail />,
+          element: <ItemDetailContainer />,
         },
       ],
     },

@@ -1,6 +1,5 @@
 import React from 'react';
 
-export function ItemDetail() {
-  console.log('Shit');
+export function ItemDetailContainer() {
   return <div>ItemDetail</div>;
 }
