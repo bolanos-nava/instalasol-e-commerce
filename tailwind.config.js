@@ -112,10 +112,10 @@ export default {
         'desktop-min': '992px',
         'desktop-max': { max: '991px' },
       },
-    },
-    fontFamily: {
-      titles: ['Asap', 'sans-serif'],
-      body: ['Open Sans', 'sans-serif'],
+      fontFamily: {
+        titles: ['Asap', 'sans-serif'],
+        body: ['Open Sans', 'sans-serif'],
+      },
     },
   },
   plugins: [],

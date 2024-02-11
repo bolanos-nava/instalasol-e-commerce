@@ -44,6 +44,10 @@ $colors-variations: ();
   );
 }
 
+$sizes: (
+  sidebar: 200px,
+);
+
 $fonts: (
   titles: 'Asap',
   body: 'Open Sans',
@@ -57,31 +61,5 @@ $font-size: (
   ),
   homepage: (
     base: 1.1rem,
-  ),
-);
-
-$sizes: (
-  sidebar: 200px,
-);
-
-$breakpoints: (
-  photocards-min: 400px,
-  mobile-min: 576px,
-  mobile-max: 575px,
-  tablet-min: 768px,
-  tablet-max: 767px,
-  desktop-min: 992px,
-  desktop-max: 991px,
-);
-
-$box-shadows: (
-  offset: 5px,
-  radii: (
-    blur: 15px,
-    spread: -3px,
-  ),
-  colors: (
-    color-channel: #000,
-    alpha-channel: 0.2,
   ),
 );

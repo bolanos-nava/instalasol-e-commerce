@@ -79,6 +79,8 @@
   --font-size-header-main: #{map-get($font-size, header, main)};
   --font-size-header-secondary: #{map-get($font-size, header, secondary)};
   --font-size-homepage-base: #{map-get($font-size, homepage, base)};
+
+  --sizes-sidebar: #{map-get($sizes, sidebar)};
 }
 
 html {

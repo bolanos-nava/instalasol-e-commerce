@@ -21,97 +21,6 @@
 }
 
 /**
- * Mixin to generate box-shadow
- */
-@mixin box-shadow(
-  $inset: false,
-  $offsets: (
-    x: 0,
-    y: 0,
-  ),
-  $radii: (
-    blur: 0,
-    spread: 0,
-  ),
-  $color: (
-    color-channel: #000000,
-    alpha-channel: 0.15,
-  )
-) {
-  $box-shadow-string: "";
-  @if $inset {
-    $box-shadow-string: "inset ";
-  }
-  $offsets-string: "#{map-get($offsets, x)} #{map-get($offsets, y)}";
-  $radii-string: "#{map-get($radii, blur)} #{map-get($radii, spread)}";
-  $color-string: rgba(
-    map-get($color, color-channel),
-    map-get($color, alpha-channel)
-  );
-
-  $box-shadow-string: "#{$box-shadow-string}#{$offsets-string} #{$radii-string} #{$color-string}";
-
-  box-shadow: #{unquote($box-shadow-string)};
-}
-
-@mixin position(
-  $position: absolute,
-  $top: unset,
-  $right: unset,
-  $bottom: unset,
-  $left: unset
-) {
-  @include assign-properties-if-not-unset(
-    (
-      position: $position,
-      top: $top,
-      right: $right,
-      bottom: $bottom,
-      left: $left,
-    )
-  );
-}
-
-@mixin sizes(
-  $height: unset,
-  $width: unset,
-  $min-height: unset,
-  $max-height: unset,
-  $min-width: unset,
-  $max-width: unset
-) {
-  @include assign-properties-if-not-unset(
-    (
-      height: $height,
-      width: $width,
-      min-height: $min-height,
-      max-height: $max-height,
-      min-width: $min-width,
-      max-width: $max-width,
-    )
-  );
-}
-
-// Add background image
-@mixin background-image(
-  $url,
-  $repeat: no-repeat,
-  $position: center,
-  $size: cover
-) {
-  background-image: url($url);
-  background-repeat: $repeat;
-  background-position: $position;
-  background-size: $size;
-}
-
-@mixin transition($property: all, $duration: 1s, $function: ease-in-out) {
-  transition-property: #{$property};
-  transition-duration: $duration;
-  transition-timing-function: $function;
-}
-
-/**
  * Auxiliary mixin to use in other mixins
  * This mixin takes in a map of property names and their values and only assigns them as CSS properties if they are not unset
  * {$properties} Map of property names and their values
@@ -122,9 +31,4 @@
       #{$property}: $value;
     }
   }
-}
-
-// Mixin to generate a fluid grid container: automatically calculates the number of columns that fit by setting a min and max size
-@mixin fluid-grid($min-width, $max-width: 1fr) {
-  grid-template-columns: repeat(auto-fit, minmax($min-width, $max-width));
 }
