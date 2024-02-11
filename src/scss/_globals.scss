@@ -160,12 +160,12 @@ img {
   border-color: #777777 transparent transparent transparent;
 }
 
-.tablet-hidden {
-  display: none;
-  @media (min-width: map-get($breakpoints, tablet-min)) {
-    display: block;
-  }
-}
+// .tablet-hidden {
+//   display: none;
+//   @media (min-width: map-get($breakpoints, tablet-min)) {
+//     display: block;
+//   }
+// }
 
 .body-container {
   @include flex($flex: 1);

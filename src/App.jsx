@@ -17,7 +17,7 @@ const router = createBrowserRouter(
       errorElement: <MainLayout ErrorBoundary={ErrorBoundary} />,
       children: [
         {
-          path: 'category?/:categoryId?',
+          path: 'category?/:categoryCode?',
           element: <ItemListContainer />,
         },
         {
