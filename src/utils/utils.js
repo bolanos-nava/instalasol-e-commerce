@@ -20,7 +20,6 @@ export function parseErrors(errors, status) {
 }
 
 export function fetchMock(url, { options, shouldMockError = false } = {}) {
-  console.log({ shouldMockError, options });
   return new Promise((resolve, reject) => {
     setTimeout(async () => {
       if (shouldMockError) {
@@ -33,12 +32,12 @@ export function fetchMock(url, { options, shouldMockError = false } = {}) {
         reject(parseErrors(errorsJson, errorsResponse.status));
       }
 
-      let response = await fetch(url, options);
+      const response = await fetch(url, options);
       try {
-        response = await response.json();
-        resolve(response);
+        const json = await response.json();
+        resolve(json);
       } catch {
-        const parsedErrors = parseErrors(response, 500);
+        const parsedErrors = parseErrors([{ message: 'Recurso no encontrado' }], 404);
         reject(parsedErrors);
       }
     }, 2000);

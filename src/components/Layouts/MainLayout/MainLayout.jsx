@@ -7,9 +7,17 @@ export function MainLayout({ ErrorBoundary }) {
   return (
     <>
       <NavBar />
-      {ErrorBoundary ?
+      {ErrorBoundary ? (
         <ErrorBoundary />
-      : <Outlet />}
+      ) : (
+        <div
+          css={`
+            margin: 20px;
+          `}
+        >
+          <Outlet />
+        </div>
+      )}
     </>
   );
 }

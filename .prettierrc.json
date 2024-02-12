@@ -5,5 +5,5 @@
   "singleQuote": true,
   "endOfLine": "lf",
   "printWidth": 90,
-  "experimentalTernaries": true
+  "experimentalTernaries": false
 }
