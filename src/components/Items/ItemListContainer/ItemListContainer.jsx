@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Alert, Progress } from 'reactstrap';
 
-import { fetchMock } from '../../../utils/utils';
 import { useChangeStateObject } from '../../../hooks';
 import { BootstrapProgress } from '../../styled-components';
-import { FluidGridContainer } from '../../FluidGridContainer/FluidGridContainer';
+import { ItemCard } from '../ItemCard';
+import { fetchMock } from '../../../utils/utils';
 
 class FetchingStates {
   categories = true;
@@ -79,6 +79,8 @@ export function ItemListContainer() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.categoryCode]);
 
+  console.log({ categories, filteredItems });
+
   return (
     <>
       {isFetching.categories || isFetching.products ? (
@@ -102,11 +104,19 @@ export function ItemListContainer() {
       )}
 
       {filteredItems.length ? (
-        <FluidGridContainer>
+        <div
+          css={`
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+          `}
+        >
           {filteredItems.map((item, idx) => (
-            <div key={idx}></div>
+            <ItemCard key={idx} item={item} />
           ))}
-        </FluidGridContainer>
+        </div>
       ) : null}
     </>
   );
