@@ -5,6 +5,7 @@ import { Alert, Progress } from 'reactstrap';
 import { fetchMock } from '../../../utils/utils';
 import { useChangeStateObject } from '../../../hooks';
 import { BootstrapProgress } from '../../styled-components';
+import { FluidGridContainer } from '../../FluidGridContainer/FluidGridContainer';
 
 class FetchingStates {
   categories = true;
@@ -20,68 +21,69 @@ export function ItemListContainer() {
   const params = useParams();
   const [errors, setErrors] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
-  const [categoryId, setCategoryId] = useState(null);
-  const [category, setCategory] = useState(null);
+  const [categorySelected, setCategorySelected] = useState({});
+  const [categories, setCategories] = useState([]);
 
   const [isFetching, , changeFetchingStates] = useChangeStateObject(
     new FetchingStates(),
     { Klass: FetchingStates },
   );
 
-  useEffect(() => {
-    const onRejected = (response) => {
-      setErrors(response);
-    };
-
+  function onProductsRejected(response) {
+    setErrors(response);
+    changeFetchingStates({ products: false });
+  }
+  function onProductsFulfilled(response) {
     if (params.categoryCode) {
-      const onCategoriesFulfilled = (response) => {
-        setCategory(response.find((category) => category.code === params.categoryCode));
-        setCategoryId(
-          response.find((category) => category.code === params.categoryCode).id,
-        );
-        changeFetchingStates({ categories: false });
-      };
-
-      fetchMock(`${process.env.BASE_URL}/mockData/categories.json`).then(
-        onCategoriesFulfilled,
-        (response) => {
-          onRejected(response);
-          changeFetchingStates({ categories: false });
-        },
+      setFilteredItems(
+        response.filter(
+          (product) => product.product_category_id === categorySelected.id,
+        ),
       );
     } else {
-      changeFetchingStates({ categories: false });
+      setFilteredItems(response);
     }
-
-    const onProductsFulfilled = (response) => {
-      if (categoryId) {
-        setFilteredItems(
-          response.filter((product) => product.product_category_id === categoryId),
-        );
-      } else {
-        setFilteredItems(response);
-      }
-      changeFetchingStates({ products: false });
-    };
-
-    fetchMock(`${process.env.BASE_URL}/mockData/products.json`).then(
-      onProductsFulfilled,
-      (response) => {
-        onRejected(response);
-        changeFetchingStates({ products: false });
-      },
+    changeFetchingStates({ products: false });
+  }
+  function onCategoriesRejected(response) {
+    setErrors(response);
+    changeFetchingStates({ categories: false });
+  }
+  function onCategoriesFulfilled(response) {
+    setCategories(response);
+    setCategorySelected(
+      response.find((category) => category.code === params.categoryCode),
     );
-  }, []);
+    changeFetchingStates({ categories: false });
+  }
 
   useEffect(() => {
-    const onRejected = (response) => {
-      setErrors(response);
-    };
-  }, [category]);
+    if (!params.categoryCode) changeFetchingStates({ categories: false });
+
+    if (!params.categoryCode || (params.categoryCode && categories.length)) {
+      fetchMock(`${process.env.BASE_URL}/mockData/products.json`).then(
+        onProductsFulfilled,
+        onProductsRejected,
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categories]);
+
+  useEffect(() => {
+    if (params.categoryCode) {
+      fetchMock(`${process.env.BASE_URL}/mockData/categories.json`).then(
+        onCategoriesFulfilled,
+        onCategoriesRejected,
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params.categoryCode]);
 
   return (
     <>
-      {isFetching.categories || isFetching.products ? <BootstrapProgress /> : null}
+      {isFetching.categories || isFetching.products ? (
+        <BootstrapProgress />
+      ) : null}
 
       {errors.length ? (
         <Alert color="warning">
@@ -94,8 +96,18 @@ export function ItemListContainer() {
       ) : null}
 
       {isFetching.categories || isFetching.products || errors.length ? null : (
-        <h2>Catálogo de {!categoryId ? 'productos' : 'productos'}</h2>
+        <h2>
+          {!params.categoryCode ? 'Todos los productos' : categorySelected.name}
+        </h2>
       )}
+
+      {filteredItems.length ? (
+        <FluidGridContainer>
+          {filteredItems.map((item, idx) => (
+            <div key={idx}></div>
+          ))}
+        </FluidGridContainer>
+      ) : null}
     </>
   );
 }
