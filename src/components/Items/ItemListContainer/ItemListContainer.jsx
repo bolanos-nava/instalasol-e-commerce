@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { Alert } from 'reactstrap';
+import { Alert, Progress } from 'reactstrap';
 
 import { fetchMock } from '../../../utils/utils';
 import { useChangeStateObject } from '../../../hooks';
+import { BootstrapProgress } from '../../styled-components';
 
 class FetchingStates {
   categories = true;
@@ -20,9 +21,9 @@ export function ItemListContainer() {
   const [errors, setErrors] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [categoryId, setCategoryId] = useState(null);
-  // const [isFetching, setIsFetching] = useState(new FetchingStates());
+  const [category, setCategory] = useState(null);
 
-  const [isFetching, setIsFetching, changeFetchingStates] = useChangeStateObject(
+  const [isFetching, , changeFetchingStates] = useChangeStateObject(
     new FetchingStates(),
     { Klass: FetchingStates },
   );
@@ -34,15 +35,20 @@ export function ItemListContainer() {
 
     if (params.categoryCode) {
       const onCategoriesFulfilled = (response) => {
+        setCategory(response.find((category) => category.code === params.categoryCode));
         setCategoryId(
           response.find((category) => category.code === params.categoryCode).id,
         );
         changeFetchingStates({ categories: false });
       };
 
-      fetchMock(`${process.env.BASE_URL}/mockData/categories.json`, {
-        shouldMockError: true,
-      }).then(onCategoriesFulfilled, onRejected);
+      fetchMock(`${process.env.BASE_URL}/mockData/categories.json`).then(
+        onCategoriesFulfilled,
+        (response) => {
+          onRejected(response);
+          changeFetchingStates({ categories: false });
+        },
+      );
     } else {
       changeFetchingStates({ categories: false });
     }
@@ -58,24 +64,38 @@ export function ItemListContainer() {
       changeFetchingStates({ products: false });
     };
 
-    fetchMock(`${process.env.BASE_URL}/mockData/categories.json`).then(
+    fetchMock(`${process.env.BASE_URL}/mockData/products.json`).then(
       onProductsFulfilled,
-      onRejected,
+      (response) => {
+        onRejected(response);
+        changeFetchingStates({ products: false });
+      },
     );
   }, []);
 
+  useEffect(() => {
+    const onRejected = (response) => {
+      setErrors(response);
+    };
+  }, [category]);
+
   return (
-    <div>
+    <>
+      {isFetching.categories || isFetching.products ? <BootstrapProgress /> : null}
+
+      {errors.length ? (
+        <Alert color="warning">
+          <ul>
+            {errors.map((err, idx) => (
+              <li key={idx}>{err.message}</li>
+            ))}
+          </ul>
+        </Alert>
+      ) : null}
+
       {isFetching.categories || isFetching.products || errors.length ? null : (
-        <h2>{categoryId || 'Top ItemListContainer'}</h2>
+        <h2>Catálogo de {!categoryId ? 'productos' : 'productos'}</h2>
       )}
-      {errors.length ?
-        errors.map((err, idx) => (
-          <Alert key={idx} color="warning">
-            {err.message}
-          </Alert>
-        ))
-      : null}
-    </div>
+    </>
   );
 }
