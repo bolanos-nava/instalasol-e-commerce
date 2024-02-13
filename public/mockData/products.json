@@ -23,7 +23,7 @@
   },
   {
     "id": 3,
-    "product_category_id": 2,
+    "product_category_id": 3,
     "name": "Pro 4mm",
     "brand_name": "SolarCable",
     "description": "Rollo de cable solar de 4mm. Resistente a los rayos UV y al clima.",
@@ -34,7 +34,7 @@
   },
   {
     "id": 4,
-    "product_category_id": 2,
+    "product_category_id": 3,
     "name": "MasterKit",
     "brand_name": "PV Connect",
     "description": "Kit maestro de conectores PV. Compatible con todos los módulos solares estándar.",
@@ -45,7 +45,7 @@
   },
   {
     "id": 5,
-    "product_category_id": 3,
+    "product_category_id": 2,
     "name": "5kW",
     "brand_name": "InverterMax",
     "description": "Inversor solar de 5kW. Alta eficiencia y fiabilidad.",
@@ -56,7 +56,7 @@
   },
   {
     "id": 6,
-    "product_category_id": 3,
+    "product_category_id": 2,
     "name": "3kW",
     "brand_name": "InverterPro",
     "description": "Inversor solar de 3kW. Diseño compacto y fácil instalación.",
@@ -78,7 +78,7 @@
   },
   {
     "id": 8,
-    "product_category_id": 2,
+    "product_category_id": 3,
     "name": "Pro 6mm",
     "brand_name": "SolarCable",
     "description": "Rollo de cable solar de 6mm. Resistente a los rayos UV y al clima.",
@@ -89,7 +89,7 @@
   },
   {
     "id": 9,
-    "product_category_id": 3,
+    "product_category_id": 2,
     "name": "7kW",
     "brand_name": "InverterMax",
     "description": "Inversor solar de 7kW. Alta eficiencia y fiabilidad.",

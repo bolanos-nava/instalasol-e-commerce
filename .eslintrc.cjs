@@ -35,7 +35,10 @@ module.exports = {
     'react/no-array-index-key': 'off',
     'react/jsx-indent': 'off',
     'react/no-unknown-property': ['error', { ignore: ['css'] }],
-    'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+    'react-refresh/only-export-components': [
+      'warn',
+      { allowConstantExport: true },
+    ],
     'react/self-closing-comp': [
       'warn',
       {
