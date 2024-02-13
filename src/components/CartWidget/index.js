@@ -1,3 +1,1 @@
-import { CartWidget } from './CartWidget';
-
-export default CartWidget;
+export * from './CartWidget';

@@ -1,0 +1,34 @@
+/** 
+ * Mixin to apply display flex and establish flex properties
+ */
+@mixin flex(
+  $flex-flow: unset,
+  $justify-c: unset,
+  $align-i: unset,
+  $gap: unset,
+  $flex: unset
+) {
+  @include assign-properties-if-not-unset(
+    (
+      flex: $flex,
+      display: flex,
+      flex-flow: $flex-flow,
+      justify-content: $justify-c,
+      align-items: $align-i,
+      gap: $gap,
+    )
+  );
+}
+
+/**
+ * Auxiliary mixin to use in other mixins
+ * This mixin takes in a map of property names and their values and only assigns them as CSS properties if they are not unset
+ * {$properties} Map of property names and their values
+ */
+@mixin assign-properties-if-not-unset($properties: ()) {
+  @each $property, $value in $properties {
+    @if $value != unset {
+      #{$property}: $value;
+    }
+  }
+}

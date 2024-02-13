@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      BASE_URL: /instalasol-e-commerce/
+      BASE_URL: /instalasol-e-commerce
 
     strategy:
       matrix:
