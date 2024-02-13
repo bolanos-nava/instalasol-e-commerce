@@ -1,21 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 
-import { useChangeStateObject } from '../../../hooks';
 import { BootstrapProgress } from '../../styled-components';
 import { fetchMock } from '../../../utils/utils';
 import { ItemList } from '../ItemList';
 import { ErrorHandler } from '../../Errors';
-
-class FetchingStates {
-  categories = true;
-  products = true;
-
-  constructor({ categories, products } = {}) {
-    this.categories = categories === undefined ? this.categories : categories;
-    this.products = products === undefined ? this.products : products;
-  }
-}
 
 export function ItemListContainer() {
   const { categoryCode } = useParams();
@@ -23,28 +12,20 @@ export function ItemListContainer() {
   const [errors, setErrors] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [categorySelected, setCategorySelected] = useState({});
-  const [categories, setCategories] = useState([]);
-
-  console.log(location);
-
-  const [isFetching, , changeFetchingStates, resetFetchingStates] =
-    useChangeStateObject(new FetchingStates(), { Klass: FetchingStates });
+  const [isLoading, setIsLoading] = useState(true);
 
   function onProductsFulfilled(response) {
-    if (categoryCode) {
-      setFilteredProducts(
-        response.filter(
-          (product) => product.product_category_id === categorySelected.id,
-        ),
-      );
-    } else {
-      setFilteredProducts(response);
-    }
+    setFilteredProducts(response);
   }
-  function onCategoriesFulfilled(response) {
-    setCategories(response);
-    setCategorySelected(
-      response.find((category) => category.code === categoryCode),
+  function onFetchFulfilled(responses) {
+    const currentCategory = responses[0].find(
+      (category) => category.code === categoryCode,
+    );
+    setCategorySelected(currentCategory);
+    setFilteredProducts(
+      responses[1].filter(
+        (product) => product.product_category_id === currentCategory.id,
+      ),
     );
   }
   function onFetchRejected(response) {
@@ -52,38 +33,38 @@ export function ItemListContainer() {
   }
 
   useEffect(() => {
-    if (!categoryCode || (categoryCode && categories.length)) {
-      fetchMock(`${process.env.BASE_URL}/mockData/products.json`)
-        .then(onProductsFulfilled, onFetchRejected)
-        .finally(() => {
-          changeFetchingStates({ products: false });
-        });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categories]);
+    const getProducts = () =>
+      fetchMock(`${process.env.BASE_URL}/mockData/products.json`);
+    const getCategories = () =>
+      fetchMock(`${process.env.BASE_URL}/mockData/categories.json`);
 
-  useEffect(() => {
     if (categoryCode) {
-      fetchMock(`${process.env.BASE_URL}/mockData/categories.json`)
-        .then(onCategoriesFulfilled, onFetchRejected)
+      const promises = [getCategories(), getProducts()];
+      Promise.all(promises)
+        .then(onFetchFulfilled, onFetchRejected)
         .finally(() => {
-          changeFetchingStates({ categories: false });
+          setIsLoading(false);
         });
     } else {
-      changeFetchingStates({ categories: false });
+      getProducts()
+        .then(onProductsFulfilled, onFetchRejected)
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryCode]);
+
+  useEffect(() => {
+    setIsLoading(true);
+  }, [location]);
 
   return (
     <>
-      {isFetching.categories || isFetching.products ? (
-        <BootstrapProgress />
-      ) : null}
+      {isLoading ? <BootstrapProgress /> : null}
 
       <ErrorHandler errors={errors} />
 
-      {isFetching.categories || isFetching.products || errors.length ? null : (
+      {isLoading || errors.length ? null : (
         <>
           <h2>
             {!categoryCode ? 'Todos los productos' : categorySelected.name}

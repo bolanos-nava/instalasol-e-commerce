@@ -46,7 +46,7 @@ module.exports = {
         html: true,
       },
     ],
-
+    'implicit-arrow-linebreak': 'off',
     'import/no-extraneous-dependencies': 'off',
     'import/prefer-default-export': 'off',
     'no-unused-vars': 'warn',
@@ -56,11 +56,6 @@ module.exports = {
     'nonblock-statement-body-position': 'off',
     'no-trailing-spaces': 'off',
     'lines-between-class-members': 'off',
-    // 'operator-linebreak': [
-    //   'warn',
-    //   'after',
-    //   { overrides: { '?': 'after', ':': 'before' } },
-    // ],
     indent: 'off',
   },
 };
