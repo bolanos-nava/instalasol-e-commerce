@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "product_category_id": 1,
+    "name": "X22",
+    "brand_name": "SunPower",
+    "description": "Módulo fotovoltaico de alta eficiencia de SunPower. Eficiencia del 22%, salida de potencia de 350W.",
+    "stock": 24,
+    "price": 350.0,
+    "publication_date": "2024-01-15T12:00",
+    "image": "https://place-hold.it/200x200"
+  },
+  {
+    "id": 2,
+    "product_category_id": 1,
+    "name": "NeON R",
+    "brand_name": "LG",
+    "description": "Módulo solar premium de LG. Eficiencia del 21.7%, salida de potencia de 375W.",
+    "stock": 16,
+    "price": 400.0,
+    "publication_date": "2024-01-20T12:00",
+    "image": "https://place-hold.it/200x200"
+  },
+  {
+    "id": 3,
+    "product_category_id": 3,
+    "name": "Pro 4mm",
+    "brand_name": "SolarCable",
+    "description": "Rollo de cable solar de 4mm. Resistente a los rayos UV y al clima.",
+    "stock": 50,
+    "price": 100.0,
+    "publication_date": "2024-01-25T12:00",
+    "image": "https://place-hold.it/200x200"
+  },
+  {
+    "id": 4,
+    "product_category_id": 3,
+    "name": "MasterKit",
+    "brand_name": "PV Connect",
+    "description": "Kit maestro de conectores PV. Compatible con todos los módulos solares estándar.",
+    "stock": 30,
+    "price": 70.0,
+    "publication_date": "2024-01-30T12:00",
+    "image": "https://place-hold.it/200x200"
+  },
+  {
+    "id": 5,
+    "product_category_id": 2,
+    "name": "5kW",
+    "brand_name": "InverterMax",
+    "description": "Inversor solar de 5kW. Alta eficiencia y fiabilidad.",
+    "stock": 10,
+    "price": 800.0,
+    "publication_date": "2024-02-04T12:00",
+    "image": "https://place-hold.it/200x200"
+  },
+  {
+    "id": 6,
+    "product_category_id": 2,
+    "name": "3kW",
+    "brand_name": "InverterPro",
+    "description": "Inversor solar de 3kW. Diseño compacto y fácil instalación.",
+    "stock": 15,
+    "price": 500.0,
+    "publication_date": "2024-02-09T12:00",
+    "image": "https://place-hold.it/200x200"
+  },
+  {
+    "id": 7,
+    "product_category_id": 1,
+    "name": "HIT",
+    "brand_name": "Panasonic",
+    "description": "Módulo solar HIT de alta eficiencia de Panasonic. Eficiencia del 19.7%, salida de potencia de 330W.",
+    "stock": 20,
+    "price": 300.0,
+    "publication_date": "2024-02-14T12:00",
+    "image": "https://place-hold.it/200x200"
+  },
+  {
+    "id": 8,
+    "product_category_id": 3,
+    "name": "Pro 6mm",
+    "brand_name": "SolarCable",
+    "description": "Rollo de cable solar de 6mm. Resistente a los rayos UV y al clima.",
+    "stock": 40,
+    "price": 120.0,
+    "publication_date": "2024-02-19T12:00",
+    "image": "https://place-hold.it/200x200"
+  },
+  {
+    "id": 9,
+    "product_category_id": 2,
+    "name": "7kW",
+    "brand_name": "InverterMax",
+    "description": "Inversor solar de 7kW. Alta eficiencia y fiabilidad.",
+    "stock": 8,
+    "price": 900.0,
+    "publication_date": "2024-02-24T12:00",
+    "image": "https://place-hold.it/200x200"
+  },
+  {
+    "id": 10,
+    "product_category_id": 1,
+    "name": "Series 6",
+    "brand_name": "First Solar",
+    "description": "Módulo solar de película delgada de First Solar. Eficiencia del 17%, salida de potencia de 420W.",
+    "stock": 22,
+    "price": 320.0,
+    "publication_date": "2024-02-29T12:00",
+    "image": "https://place-hold.it/200x200"
+  }
+]

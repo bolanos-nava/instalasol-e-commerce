@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Módulos fotovoltaicos",
+    "code": "solar_modules"
+  },
+  {
+    "id": 2,
+    "name": "Inversores solares",
+    "code": "solar_inverters"
+  },
+  {
+    "id": 3,
+    "name": "Cables y conectores",
+    "code": "cables_connectors"
+  }
+]
