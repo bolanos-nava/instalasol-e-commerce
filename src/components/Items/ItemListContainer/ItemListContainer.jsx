@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { Alert } from 'reactstrap';
+import { useLocation, useParams } from 'react-router-dom';
 
 import { useChangeStateObject } from '../../../hooks';
 import { BootstrapProgress } from '../../styled-components';
 import { fetchMock } from '../../../utils/utils';
 import { ItemList } from '../ItemList';
+import { ErrorHandler } from '../../Errors';
 
 class FetchingStates {
   categories = true;
@@ -18,66 +18,62 @@ class FetchingStates {
 }
 
 export function ItemListContainer() {
-  const params = useParams();
+  const { categoryCode } = useParams();
+  const location = useLocation();
   const [errors, setErrors] = useState([]);
-  const [filteredItems, setFilteredItems] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [categorySelected, setCategorySelected] = useState({});
   const [categories, setCategories] = useState([]);
 
-  const [isFetching, , changeFetchingStates] = useChangeStateObject(
-    new FetchingStates(),
-    { Klass: FetchingStates },
-  );
+  console.log(location);
 
-  function onProductsRejected(response) {
-    setErrors(response);
-    changeFetchingStates({ products: false });
-  }
+  const [isFetching, , changeFetchingStates, resetFetchingStates] =
+    useChangeStateObject(new FetchingStates(), { Klass: FetchingStates });
+
   function onProductsFulfilled(response) {
-    if (params.categoryCode) {
-      setFilteredItems(
+    if (categoryCode) {
+      setFilteredProducts(
         response.filter(
           (product) => product.product_category_id === categorySelected.id,
         ),
       );
     } else {
-      setFilteredItems(response);
+      setFilteredProducts(response);
     }
-    changeFetchingStates({ products: false });
-  }
-  function onCategoriesRejected(response) {
-    setErrors(response);
-    changeFetchingStates({ categories: false });
   }
   function onCategoriesFulfilled(response) {
     setCategories(response);
     setCategorySelected(
-      response.find((category) => category.code === params.categoryCode),
+      response.find((category) => category.code === categoryCode),
     );
-    changeFetchingStates({ categories: false });
+  }
+  function onFetchRejected(response) {
+    setErrors(response);
   }
 
   useEffect(() => {
-    if (!params.categoryCode) changeFetchingStates({ categories: false });
-
-    if (!params.categoryCode || (params.categoryCode && categories.length)) {
-      fetchMock(`${process.env.BASE_URL}/mockData/products.json`).then(
-        onProductsFulfilled,
-        onProductsRejected,
-      );
+    if (!categoryCode || (categoryCode && categories.length)) {
+      fetchMock(`${process.env.BASE_URL}/mockData/products.json`)
+        .then(onProductsFulfilled, onFetchRejected)
+        .finally(() => {
+          changeFetchingStates({ products: false });
+        });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categories]);
 
   useEffect(() => {
-    if (params.categoryCode) {
-      fetchMock(`${process.env.BASE_URL}/mockData/categories.json`).then(
-        onCategoriesFulfilled,
-        onCategoriesRejected,
-      );
+    if (categoryCode) {
+      fetchMock(`${process.env.BASE_URL}/mockData/categories.json`)
+        .then(onCategoriesFulfilled, onFetchRejected)
+        .finally(() => {
+          changeFetchingStates({ categories: false });
+        });
+    } else {
+      changeFetchingStates({ categories: false });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params.categoryCode]);
+  }, [categoryCode]);
 
   return (
     <>
@@ -85,23 +81,16 @@ export function ItemListContainer() {
         <BootstrapProgress />
       ) : null}
 
-      {errors.length ? (
-        <Alert color="warning">
-          <ul>
-            {errors.map((err, idx) => (
-              <li key={idx}>{err.message}</li>
-            ))}
-          </ul>
-        </Alert>
-      ) : null}
+      <ErrorHandler errors={errors} />
 
       {isFetching.categories || isFetching.products || errors.length ? null : (
-        <h2>
-          {!params.categoryCode ? 'Todos los productos' : categorySelected.name}
-        </h2>
+        <>
+          <h2>
+            {!categoryCode ? 'Todos los productos' : categorySelected.name}
+          </h2>
+          <ItemList items={filteredProducts} />
+        </>
       )}
-
-      {filteredItems.length ? <ItemList items={filteredItems} /> : null}
     </>
   );
 }

@@ -7,14 +7,12 @@ import {
   DropdownToggle,
   Nav,
   Navbar,
-  NavbarBrand,
-  NavbarText,
   NavbarToggler,
   UncontrolledDropdown,
 } from 'reactstrap';
 import { CartWidget } from '../CartWidget';
 
-export function NavBar({ children }) {
+export function NavBar() {
   const [isOpenNavBar, setIsOpenNavBar] = useState(false);
 
   const toggleNavbar = () => setIsOpenNavBar((state) => !state);
@@ -41,22 +39,19 @@ export function NavBar({ children }) {
       <Collapse isOpen={isOpenNavBar} navbar>
         <Nav className="me-auto" navbar>
           <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle nav caret>
-              Paquetes
+            <DropdownToggle className="text-white" nav caret>
+              Categorías
             </DropdownToggle>
             <DropdownMenu>
-              <DropdownItem>Paquetes de módulos fotovoltaicos</DropdownItem>
-              <DropdownItem>Sistemas aislados</DropdownItem>
-            </DropdownMenu>
-          </UncontrolledDropdown>
-          <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle nav caret>
-              Productos
-            </DropdownToggle>
-            <DropdownMenu>
-              <DropdownItem>Paneles solares</DropdownItem>
-              <DropdownItem>Baterías</DropdownItem>
-              <DropdownItem>Protecciones</DropdownItem>
+              <Link to="/category/solar_modules">
+                <DropdownItem>Módulos fotovoltaicos</DropdownItem>
+              </Link>
+              <Link to="/category/solar_inverters">
+                <DropdownItem>Inversores solares</DropdownItem>
+              </Link>
+              <Link to="/category/cables_connectors">
+                <DropdownItem>Cables y conectores</DropdownItem>
+              </Link>
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>

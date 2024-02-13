@@ -1,7 +1,7 @@
 import { ItemCard } from '../ItemCard';
 
 export function ItemList({ items }) {
-  return (
+  return items.length ? (
     <div
       css={`
         display: flex;
@@ -15,5 +15,5 @@ export function ItemList({ items }) {
         <ItemCard key={idx} item={item} />
       ))}
     </div>
-  );
+  ) : null;
 }

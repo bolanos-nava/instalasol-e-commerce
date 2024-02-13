@@ -1,13 +1,5 @@
 import mockResponse from './mockResponse';
 
-export function asyncMock() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(true);
-    }, 2000);
-  });
-}
-
 export function parseErrors(errors, status) {
   if (Array.isArray(errors)) {
     return errors.map((err) => ({
@@ -37,7 +29,10 @@ export function fetchMock(url, { options, shouldMockError = false } = {}) {
         const json = await response.json();
         resolve(json);
       } catch {
-        const parsedErrors = parseErrors([{ message: 'Recurso no encontrado' }], 404);
+        const parsedErrors = parseErrors(
+          [{ message: 'Recurso no encontrado' }],
+          404,
+        );
         reject(parsedErrors);
       }
     }, 2000);
@@ -46,4 +41,5 @@ export function fetchMock(url, { options, shouldMockError = false } = {}) {
 
 export default {
   fetchMock,
+  parseErrors,
 };
