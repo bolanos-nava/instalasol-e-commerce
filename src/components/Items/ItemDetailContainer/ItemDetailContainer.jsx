@@ -37,12 +37,7 @@ export function ItemDetailContainer() {
 
       <ErrorHandler errors={errors} />
 
-      {isFetching || errors.length ? null : (
-        <>
-          <h2>{`${product.brand_name} ${product.name}`}</h2>
-          <ItemDetail />
-        </>
-      )}
+      {isFetching || errors.length ? null : <ItemDetail item={product} />}
     </>
   );
 }

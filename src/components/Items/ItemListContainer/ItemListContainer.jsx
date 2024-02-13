@@ -52,7 +52,7 @@ export function ItemListContainer() {
           setIsLoading(false);
         });
     }
-  }, [categoryCode]);
+  }, [categoryCode, location]);
 
   useEffect(() => {
     setIsLoading(true);
