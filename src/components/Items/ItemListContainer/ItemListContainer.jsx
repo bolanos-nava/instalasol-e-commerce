@@ -21,12 +21,16 @@ export function ItemListContainer() {
     const currentCategory = responses[0].find(
       (category) => category.code === categoryCode,
     );
-    setCategorySelected(currentCategory);
-    setFilteredProducts(
-      responses[1].filter(
-        (product) => product.product_category_id === currentCategory.id,
-      ),
-    );
+    if (currentCategory) {
+      setCategorySelected(currentCategory ?? {});
+      setFilteredProducts(
+        responses[1].filter(
+          (product) => product.product_category_id === currentCategory.id,
+        ),
+      );
+    } else {
+      setErrors([{ message: 'Categoría no encontrada', status: 404 }]);
+    }
   }
   function onFetchRejected(response) {
     setErrors(response);
