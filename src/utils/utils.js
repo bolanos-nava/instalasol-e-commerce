@@ -1,3 +1,4 @@
+import { collection, getDocs, getFirestore, query } from 'firebase/firestore';
 import mockResponse from './mockResponse';
 
 export function parseErrors(errors, status) {
@@ -39,7 +40,27 @@ export function fetchMock(url, { options, shouldMockError = false } = {}) {
   });
 }
 
+export function fetchCollection(
+  collectionName,
+  errorMessage,
+  { filters = [] } = {},
+) {
+  return new Promise((resolve, reject) => {
+    const db = getFirestore();
+    // const collectionFetched = collection(db, collectionName);
+    const collectionFetched = query(collection(db, collectionName), ...filters);
+    getDocs(collectionFetched).then((snapshot) => {
+      if (snapshot.empty) {
+        const parsedErrors = parseErrors([{ message: errorMessage }], 404);
+        reject(parsedErrors);
+      }
+      resolve(snapshot);
+    });
+  });
+}
+
 export default {
   fetchMock,
   parseErrors,
+  fetchCollection,
 };
