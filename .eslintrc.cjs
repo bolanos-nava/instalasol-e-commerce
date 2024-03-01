@@ -57,5 +57,6 @@ module.exports = {
     'no-trailing-spaces': 'off',
     'lines-between-class-members': 'off',
     indent: 'off',
+    'object-curly-newline': 'off',
   },
 };
