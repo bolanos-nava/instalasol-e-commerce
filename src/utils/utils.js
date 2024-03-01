@@ -42,12 +42,10 @@ export function fetchMock(url, { options, shouldMockError = false } = {}) {
 
 export function fetchCollection(
   collectionName,
-  errorMessage,
-  { filters = [] } = {},
+  { errorMessage, filters = [] } = {},
 ) {
   return new Promise((resolve, reject) => {
     const db = getFirestore();
-    // const collectionFetched = collection(db, collectionName);
     const collectionFetched = query(collection(db, collectionName), ...filters);
     getDocs(collectionFetched).then((snapshot) => {
       if (snapshot.empty) {
