@@ -4,6 +4,7 @@ import { fetchCollection } from '../utils/utils';
 function useFetchContext() {
   const [categories, setCategories] = useState([]);
   const [errors, setErrors] = useState([]);
+  const [isFetching, setIsFetching] = useState(true);
 
   function onCategoriesFetchFulfilled(response) {
     const fetchedCategories = response.docs.map((doc) => ({
@@ -17,15 +18,17 @@ function useFetchContext() {
   }
 
   useEffect(() => {
-    fetchCollection('categories', 'Ocurrió un error inesperado').then(
-      onCategoriesFetchFulfilled,
-      onCategoriesFetchRejected,
-    );
+    fetchCollection('categories', 'Ocurrió un error inesperado')
+      .then(onCategoriesFetchFulfilled, onCategoriesFetchRejected)
+      .finally(() => {
+        setIsFetching(false);
+      });
   }, []);
 
   return {
     categories,
     errors,
+    isFetching,
   };
 }
 
