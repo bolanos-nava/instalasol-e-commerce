@@ -1,4 +1,11 @@
-import { collection, getDocs, getFirestore, query } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  query,
+} from 'firebase/firestore';
 import mockResponse from './mockResponse';
 
 export function parseErrors(errors, status) {
@@ -46,13 +53,27 @@ export function fetchCollection(
 ) {
   return new Promise((resolve, reject) => {
     const db = getFirestore();
-    const collectionFetched = query(collection(db, collectionName), ...filters);
-    getDocs(collectionFetched).then((snapshot) => {
+    const collectionRef = query(collection(db, collectionName), ...filters);
+    getDocs(collectionRef).then((snapshot) => {
       if (snapshot.empty) {
         const parsedErrors = parseErrors([{ message: errorMessage }], 404);
         reject(parsedErrors);
       }
       resolve(snapshot);
+    });
+  });
+}
+
+export function fetchDocument(collectionName, documentId, errorMessage) {
+  return new Promise((resolve, reject) => {
+    const db = getFirestore();
+    const documentRef = doc(db, collectionName, documentId);
+    getDoc(documentRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        resolve(snapshot);
+      }
+      const parsedErrors = parseErrors([{ message: errorMessage }], 404);
+      reject(parsedErrors);
     });
   });
 }

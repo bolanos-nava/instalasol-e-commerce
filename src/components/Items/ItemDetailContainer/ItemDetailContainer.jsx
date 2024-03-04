@@ -4,30 +4,24 @@ import { useParams } from 'react-router-dom';
 import { ErrorHandler } from '../../Errors';
 import { BootstrapProgress } from '../../styled-components';
 import { ItemDetail } from '../ItemDetail';
-import { fetchMock } from '../../../utils/utils';
+import { fetchDocument } from '../../../utils/utils';
 
 export function ItemDetailContainer() {
-  let { productId } = useParams();
-  productId = Number(productId);
+  const { productId } = useParams();
   const [product, setProduct] = useState({});
   const [errors, setErrors] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
 
-  function onProductsFulfilled(response) {
-    const selectedProduct = response.find((item) => item.id === productId);
-    if (!selectedProduct) {
-      setErrors([{ message: 'Producto no encontrado', status: 404 }]);
-    } else {
-      setProduct((prevState) => selectedProduct || prevState);
-    }
+  function onFetchFulfilled(response) {
+    setProduct({ id: response.id, ...response.data() });
   }
-  function onProductsRejected(response) {
+  function onFetchRejected(response) {
     setErrors(response);
   }
 
   useEffect(() => {
-    fetchMock(`${process.env.BASE_URL}/mockData/products.json`)
-      .then(onProductsFulfilled, onProductsRejected)
+    fetchDocument('products', productId, 'Producto no encontrado')
+      .then(onFetchFulfilled, onFetchRejected)
       .finally(() => setIsFetching(false));
   }, [productId]);
 

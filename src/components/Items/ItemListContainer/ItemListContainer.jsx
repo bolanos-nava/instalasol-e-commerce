@@ -16,13 +16,12 @@ export function ItemListContainer() {
   const [errors, setErrors] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [categorySelected, setCategorySelected] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const [areProductsFetching, setAreProductsFetching] = useState(true);
 
   function onFetchRejected(response) {
     setErrors(response);
   }
-
-  function onProductsFulfilled(response) {
+  function onFetchFulfilled(response) {
     const products = response.docs.map((docu) => ({
       id: docu.id,
       ...docu.data(),
@@ -58,29 +57,30 @@ export function ItemListContainer() {
         errorMessage: 'Productos no encontrados para esta categoría',
         filters: categoryFilters,
       })
-        .then(onProductsFulfilled, onFetchRejected)
-        .finally(() => setIsLoading(false));
+        .then(onFetchFulfilled, onFetchRejected)
+        .finally(() => setAreProductsFetching(false));
     }
   }, [categoryCode, location, areCategoriesFetching, categories]);
 
   useEffect(() => {
     setErrors([]);
-    setIsLoading(true);
+    setAreProductsFetching(true);
   }, [location]);
 
   return (
     <>
-      {isLoading ? <BootstrapProgress /> : null}
+      {areCategoriesFetching ? <BootstrapProgress /> : null}
 
-      <ErrorHandler errors={errors} />
+      <h2>{!categoryCode ? 'Todos los productos' : categorySelected.name}</h2>
 
-      {isLoading || errors.length ? null : (
-        <>
-          <h2>
-            {!categoryCode ? 'Todos los productos' : categorySelected.name}
-          </h2>
-          <ItemList items={filteredProducts} />
-        </>
+      {areProductsFetching && !areCategoriesFetching ? (
+        <BootstrapProgress />
+      ) : (
+        <ErrorHandler errors={errors} />
+      )}
+
+      {areProductsFetching || errors.length ? null : (
+        <ItemList items={filteredProducts} />
       )}
     </>
   );

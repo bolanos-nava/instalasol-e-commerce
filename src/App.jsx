@@ -1,4 +1,8 @@
-import { RouterProvider, createBrowserRouter, useRouteError } from 'react-router-dom';
+import {
+  RouterProvider,
+  createBrowserRouter,
+  useRouteError,
+} from 'react-router-dom';
 import { MainLayout } from './components/Layouts';
 import { ItemDetailContainer, ItemListContainer } from './components/Items';
 
@@ -28,7 +32,7 @@ const router = createBrowserRouter(
     },
   ],
   {
-    // defines base path
+    // defines base path. Every other path will be child of this one
     basename: '/instalasol-e-commerce',
   },
 );
