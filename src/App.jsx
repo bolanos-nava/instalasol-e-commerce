@@ -3,8 +3,9 @@ import {
   createBrowserRouter,
   useRouteError,
 } from 'react-router-dom';
-import { MainLayout } from './components/Layouts';
-import { ItemDetailContainer, ItemListContainer } from './components/Items';
+import { MainLayout } from './components/layouts';
+import { ItemListContainer } from './views/ItemList';
+import { ItemDetailContainer } from './views/ItemDetail';
 
 function ErrorBoundary() {
   const error = useRouteError();

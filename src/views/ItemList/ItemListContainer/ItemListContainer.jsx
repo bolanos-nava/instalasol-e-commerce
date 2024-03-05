@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { doc, getFirestore, where } from 'firebase/firestore';
 
-import { BootstrapProgress } from '../../styled-components';
+import { BootstrapProgress } from '../../../components/styled-components';
 import { fetchCollection } from '../../../utils/utils';
 import { ItemList } from '../ItemList';
-import { ErrorHandler } from '../../Errors';
+import { ErrorHandler } from '../../../components/Errors';
 import { FetchContext } from '../../../contexts/FetchContext';
 
 export function ItemListContainer() {

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { ErrorHandler } from '../../Errors';
-import { BootstrapProgress } from '../../styled-components';
+import { ErrorHandler } from '../../../components/Errors';
+import { BootstrapProgress } from '../../../components/styled-components';
 import { ItemDetail } from '../ItemDetail';
 import { fetchDocument } from '../../../utils/utils';
 

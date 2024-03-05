@@ -1,6 +1,6 @@
-import { ItemCount } from '../ItemCount';
+import { ItemCount } from '../../../components/Items';
 import { useCounter } from '../../../hooks';
-import { AddToCart } from '../../Buttons';
+import { AddToCart } from '../../../components/Buttons';
 
 export function ItemDetail({ item }) {
   const counter = useCounter(item.stock);

@@ -1,4 +1,4 @@
-import { ItemCard } from '../ItemCard';
+import { ItemCard } from '../../../components/Items';
 
 export function ItemList({ items }) {
   return items.length ? (
