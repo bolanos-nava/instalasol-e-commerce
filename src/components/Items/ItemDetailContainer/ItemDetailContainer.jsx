@@ -5,14 +5,12 @@ import { ErrorHandler } from '../../Errors';
 import { BootstrapProgress } from '../../styled-components';
 import { ItemDetail } from '../ItemDetail';
 import { fetchDocument } from '../../../utils/utils';
-import { useCounter } from '../../../hooks';
 
 export function ItemDetailContainer() {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
   const [errors, setErrors] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
-  // const itemCounter = useCounter(product);
 
   function onFetchFulfilled(response) {
     setProduct({ id: response.id, ...response.data() });

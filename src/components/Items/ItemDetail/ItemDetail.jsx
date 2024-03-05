@@ -44,6 +44,7 @@ export function ItemDetail({ item }) {
           css={`
             max-width: 25rem;
           `}
+          cartItem={{ id: item.id, quantity: counter.count }}
         />
       </div>
     </div>

@@ -13,19 +13,21 @@ export function CartWidget({ count = 10 }) {
       `}
     >
       <FontAwesomeIcon icon={faCartShopping} />
-      <CircularContainer
-        css={`
-          --diameter: 1.5rem;
-          background-color: #cc0808;
-          color: #fff;
-          position: absolute;
-          padding: 2px;
-          top: 0;
-          right: -0.1rem;
-        `}
-      >
-        {count}
-      </CircularContainer>
+      {count ? (
+        <CircularContainer
+          css={`
+            --diameter: 1.5rem;
+            background-color: #cc0808;
+            color: #fff;
+            position: absolute;
+            padding: 2px;
+            top: 0;
+            right: -0.1rem;
+          `}
+        >
+          {count}
+        </CircularContainer>
+      ) : null}
     </CircularContainer>
   );
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import {
   Collapse,
@@ -10,9 +10,11 @@ import {
   NavbarToggler,
   UncontrolledDropdown,
 } from 'reactstrap';
+import { CartContext } from '../../contexts/CartContext';
 import { CartWidget } from '../CartWidget';
 
 export function NavBar() {
+  const { cart } = useContext(CartContext);
   const [isOpenNavBar, setIsOpenNavBar] = useState(false);
 
   const toggleNavbar = () => setIsOpenNavBar((state) => !state);
@@ -57,7 +59,7 @@ export function NavBar() {
         </Nav>
       </Collapse>
 
-      <CartWidget />
+      <CartWidget count={Object.keys(cart).length} />
     </Navbar>
   );
 }
