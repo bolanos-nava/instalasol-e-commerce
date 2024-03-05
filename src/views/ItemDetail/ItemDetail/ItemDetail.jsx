@@ -1,9 +1,9 @@
 import { ItemCount } from '../../../components/Items';
-import { useCounter } from '../../../hooks';
 import { AddToCart } from '../../../components/Buttons';
+import { useCart } from '../../../hooks/useCart';
 
 export function ItemDetail({ item }) {
-  const counter = useCounter(item.stock);
+  const cartCounter = useCart(item.id, item.stock);
   return (
     <div
       className="shadow-default"
@@ -39,12 +39,14 @@ export function ItemDetail({ item }) {
         <p>${item.price.toFixed(2)}</p>
         <p>{item.description}</p>
         <p>Stock disponible: {item.stock}</p>
-        <ItemCount counter={counter} />
+        <ItemCount counter={cartCounter} />
         <AddToCart
           css={`
             max-width: 25rem;
           `}
-          cartItem={{ id: item.id, quantity: counter.count }}
+          cartItem={{ id: item.id, quantity: cartCounter.count }}
+          addToCart={cartCounter.addToCart}
+          disabled={!cartCounter.count || cartCounter.isOutOfStock}
         />
       </div>
     </div>

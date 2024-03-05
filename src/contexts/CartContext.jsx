@@ -6,9 +6,6 @@ export const CartContext = createContext();
 function useCartContext() {
   const [cart, setCart] = useState(() => lscache.get('cart') || {});
 
-  function addToCart(cartItem) {
-    setCart((prevCart) => ({ ...prevCart, [cartItem.id]: cartItem.quantity }));
-  }
   function deleteFromCart(cartItem) {
     setCart((_prevCart) => {
       const prevCart = { ..._prevCart };
@@ -24,7 +21,6 @@ function useCartContext() {
   return {
     cart,
     setCart,
-    addToCart,
     deleteFromCart,
   };
 }

@@ -1,11 +1,12 @@
-import { useContext } from 'react';
-import { CartContext } from '../../contexts/CartContext';
 import { BasicButton } from '../styled-components/BasicButton';
 
-export function AddToCart({ className, cartItem }) {
-  const { addToCart } = useContext(CartContext);
+export function AddToCart({ className, cartItem, addToCart, disabled }) {
   return (
-    <BasicButton className={className} onClick={() => addToCart(cartItem)}>
+    <BasicButton
+      className={className}
+      disabled={disabled}
+      onClick={() => addToCart(cartItem)}
+    >
       Añadir al carrito
     </BasicButton>
   );

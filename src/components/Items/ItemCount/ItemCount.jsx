@@ -12,11 +12,11 @@ export function ItemCount({
         gap: 2px;
       `}
     >
-      <OperatorButton disabled={count === min} onClick={decrement}>
+      <OperatorButton disabled={count <= min} onClick={decrement}>
         -
       </OperatorButton>
       <span>{count}</span>
-      <OperatorButton disabled={count === max} onClick={increment}>
+      <OperatorButton disabled={count >= max} onClick={increment}>
         +
       </OperatorButton>
     </div>
