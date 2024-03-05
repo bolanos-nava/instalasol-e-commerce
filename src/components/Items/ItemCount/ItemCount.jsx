@@ -1,16 +1,9 @@
 import React from 'react';
-import { Button } from 'reactstrap';
-import styled from 'styled-components';
+import { BasicButton as OperatorButton } from '../../styled-components/BasicButton';
 
-import { useCounter } from '../../../hooks';
-
-const OperatorButton = styled(Button).attrs({
-  type: 'button',
-  className: 'text-buttons-text bg-buttons',
-})``;
-
-export function ItemCount({ stock }) {
-  const { count, increment, decrement } = useCounter(stock);
+export function ItemCount({
+  counter: { count, increment, decrement, min, max },
+}) {
   return (
     <div
       css={`
@@ -19,9 +12,13 @@ export function ItemCount({ stock }) {
         gap: 2px;
       `}
     >
-      <OperatorButton onClick={increment}>+</OperatorButton>
+      <OperatorButton disabled={count === min} onClick={decrement}>
+        -
+      </OperatorButton>
       <span>{count}</span>
-      <OperatorButton onClick={decrement}>-</OperatorButton>
+      <OperatorButton disabled={count === max} onClick={increment}>
+        +
+      </OperatorButton>
     </div>
   );
 }
