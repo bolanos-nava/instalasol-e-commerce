@@ -15,5 +15,7 @@ export function useCounter(max, { min = 0, start = 0 } = {}) {
     setCount,
     increment,
     decrement,
+    max,
+    min,
   };
 }
