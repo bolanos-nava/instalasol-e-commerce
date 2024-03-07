@@ -3,9 +3,10 @@ import {
   createBrowserRouter,
   useRouteError,
 } from 'react-router-dom';
-import { MainLayout } from './components/layouts';
+import { MainLayout } from './layouts/MainLayout';
 import { ItemListContainer } from './views/ItemList';
 import { ItemDetailContainer } from './views/ItemDetail';
+import { CartContainer } from './views/Cart';
 
 function ErrorBoundary() {
   const error = useRouteError();
@@ -28,6 +29,10 @@ const router = createBrowserRouter(
         {
           path: 'item/:productId',
           element: <ItemDetailContainer />,
+        },
+        {
+          path: 'cart',
+          element: <CartContainer />,
         },
       ],
     },

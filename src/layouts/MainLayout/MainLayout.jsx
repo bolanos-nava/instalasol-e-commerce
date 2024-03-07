@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Outlet } from 'react-router-dom';
-import { NavBar } from '../../NavBar';
-import { FetchContextProvider } from '../../../contexts/FetchContext';
-import { CartContextProvider } from '../../../contexts/CartContext';
+import { NavBar } from '../../components/NavBar';
+import { FetchContextProvider } from '../../contexts/FetchContext';
+import { CartContextProvider } from '../../contexts/CartContext';
 
 export function MainLayout({ ErrorBoundary }) {
   return (

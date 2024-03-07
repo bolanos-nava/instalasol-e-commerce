@@ -1,9 +1,9 @@
 import { ItemCount } from '../../../components/Items';
 import { AddToCart } from '../../../components/Buttons';
-import { useCart } from '../../../hooks/useCart';
+import { useAddToCart } from '../../../hooks/useAddToCart';
 
 export function ItemDetail({ item }) {
-  const cartCounter = useCart(item.id, item.stock);
+  const cartCounter = useAddToCart(item.id, item.stock);
   return (
     <div
       className="shadow-default"

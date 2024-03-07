@@ -1,6 +1,4 @@
-import { ItemCard } from '../../../components/Items';
-
-export function ItemList({ items }) {
+export function ItemList({ items, Children }) {
   return items.length ? (
     <div
       css={`
@@ -12,7 +10,7 @@ export function ItemList({ items }) {
       `}
     >
       {items.map((item, idx) => (
-        <ItemCard key={idx} item={item} />
+        <Children key={idx} item={item} />
       ))}
     </div>
   ) : null;

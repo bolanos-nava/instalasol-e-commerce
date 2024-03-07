@@ -1,31 +1,37 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useCounter } from './useCounter';
 import { CartContext } from '../contexts/CartContext';
 
 export function useCart(itemId, stock) {
-  const { cart, setCart } = useContext(CartContext);
+  const { cart, setCart, deleteFromCart } = useContext(CartContext);
   const quantityInCart = cart[itemId] ?? 0;
+  const counter = useCounter(stock, { start: quantityInCart });
 
-  const currentStock = stock - quantityInCart;
-  const counter = useCounter(currentStock);
-  const isOutOfStock = quantityInCart + counter.count > stock;
+  useEffect(() => {
+    if (!counter.count) deleteFromCart(itemId);
+  }, [counter.count]);
 
-  function addToCart(cartItem) {
-    if (cartItem.quantity > 0 && !isOutOfStock) {
-      setCart((prevCart) => {
-        const currentQuantity = prevCart[cartItem.id] ?? 0;
-        return {
-          ...prevCart,
-          [cartItem.id]: currentQuantity + cartItem.quantity,
-        };
-      });
-      counter.setMax((prevMax) => prevMax - cartItem.quantity);
-    }
+  function changeQuantity(addendum) {
+    setCart((prevCart) => {
+      const currentQuantity = prevCart[itemId];
+      return {
+        ...prevCart,
+        [itemId]: currentQuantity + addendum,
+      };
+    });
+  }
+  function increment() {
+    counter.increment();
+    changeQuantity(+1);
+  }
+  function decrement() {
+    counter.decrement();
+    changeQuantity(-1);
   }
 
   return {
     ...counter,
-    addToCart,
-    isOutOfStock,
+    increment,
+    decrement,
   };
 }

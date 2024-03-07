@@ -7,6 +7,7 @@ import { fetchCollection } from '../../../utils/utils';
 import { ItemList } from '../ItemList';
 import { ErrorHandler } from '../../../components/Errors';
 import { FetchContext } from '../../../contexts/FetchContext';
+import { ItemCard } from '../../../components/Items';
 
 export function ItemListContainer() {
   const { categoryCode } = useParams();
@@ -80,7 +81,7 @@ export function ItemListContainer() {
       )}
 
       {areProductsFetching || errors.length ? null : (
-        <ItemList items={filteredProducts} />
+        <ItemList items={filteredProducts} Children={ItemCard} />
       )}
     </>
   );
