@@ -22,7 +22,7 @@ export function CartItemCard({ item }) {
           css={`
             max-width: 200px;
           `}
-          src={item.image}
+          src={`${process.env.BASE_URL}/images/${item.image}`}
           alt={item.description}
         />
       </Link>
