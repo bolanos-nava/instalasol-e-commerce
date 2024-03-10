@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import {
   Collapse,
   DropdownItem,
@@ -16,6 +16,22 @@ export function NavBar() {
   const [isOpenNavBar, setIsOpenNavBar] = useState(false);
 
   const toggleNavbar = () => setIsOpenNavBar((state) => !state);
+
+  const links = [
+    {
+      text: 'Módulos fotovoltaicos',
+      path: '/category/solar_modules',
+    },
+    {
+      text: 'Inversores solares',
+      path: '/category/solar_inverters',
+    },
+    {
+      text: 'Cables y conectores',
+      path: '/category/cables_connectors',
+    },
+  ];
+
   return (
     <Navbar className="bg-tw-primary" expand="md">
       <Link
@@ -34,7 +50,7 @@ export function NavBar() {
         />
       </Link>
 
-      <NavbarToggler onClick={toggleNavbar} />
+      <NavbarToggler className="bg-slate-200" onClick={toggleNavbar} />
 
       <Collapse isOpen={isOpenNavBar} navbar>
         <Nav className="me-auto" navbar>
@@ -43,15 +59,15 @@ export function NavBar() {
               Categorías
             </DropdownToggle>
             <DropdownMenu>
-              <Link to="/category/solar_modules">
-                <DropdownItem>Módulos fotovoltaicos</DropdownItem>
-              </Link>
-              <Link to="/category/solar_inverters">
-                <DropdownItem>Inversores solares</DropdownItem>
-              </Link>
-              <Link to="/category/cables_connectors">
-                <DropdownItem>Cables y conectores</DropdownItem>
-              </Link>
+              {links.map(({ text, path }, idx) => (
+                <NavLink key={idx} to={path}>
+                  {({ isActive }) => (
+                    <DropdownItem className={isActive ? 'bg-bg-darker-7' : ''}>
+                      {text}
+                    </DropdownItem>
+                  )}
+                </NavLink>
+              ))}
             </DropdownMenu>
           </UncontrolledDropdown>
         </Nav>

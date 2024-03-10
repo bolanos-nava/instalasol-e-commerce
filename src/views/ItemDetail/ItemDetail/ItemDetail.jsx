@@ -1,6 +1,9 @@
-import { ItemCount } from '../ItemCount';
+import { ItemQuantitySelector } from '../../../components/Items';
+import { AddItemButton } from '../../../components/Buttons';
+import { useAddToCart } from '../../../hooks/useAddToCart';
 
 export function ItemDetail({ item }) {
+  const cartCounter = useAddToCart(item.id, item.stock);
   return (
     <div
       className="shadow-default"
@@ -16,7 +19,7 @@ export function ItemDetail({ item }) {
         css={`
           max-width: 200px;
         `}
-        src={item.image}
+        src={`${process.env.BASE_URL}/images/${item.image}`}
         alt={item.description}
       />
       <div
@@ -36,7 +39,15 @@ export function ItemDetail({ item }) {
         <p>${item.price.toFixed(2)}</p>
         <p>{item.description}</p>
         <p>Stock disponible: {item.stock}</p>
-        <ItemCount stock={item.stock} />
+        <ItemQuantitySelector counter={cartCounter} />
+        <AddItemButton
+          css={`
+            max-width: 25rem;
+          `}
+          cartItem={{ id: item.id, quantity: cartCounter.count }}
+          addToCart={cartCounter.addToCart}
+          disabled={!cartCounter.count || cartCounter.isOutOfStock}
+        />
       </div>
     </div>
   );

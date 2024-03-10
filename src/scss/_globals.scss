@@ -31,38 +31,131 @@
   --color-secondary-darker-7: #{map-get($colors-variations, secondary-darker-7)};
   --color-secondary-darker-8: #{map-get($colors-variations, secondary-darker-8)};
   --color-secondary-darker-9: #{map-get($colors-variations, secondary-darker-9)};
-  --color-secondary-darker-10: #{map-get($colors-variations, secondary-darker-10)};
-  --color-secondary-lighter-1: #{map-get($colors-variations, secondary-lighter-1)};
-  --color-secondary-lighter-2: #{map-get($colors-variations, secondary-lighter-2)};
-  --color-secondary-lighter-3: #{map-get($colors-variations, secondary-lighter-3)};
-  --color-secondary-lighter-4: #{map-get($colors-variations, secondary-lighter-4)};
-  --color-secondary-lighter-5: #{map-get($colors-variations, secondary-lighter-5)};
-  --color-secondary-lighter-6: #{map-get($colors-variations, secondary-lighter-6)};
-  --color-secondary-lighter-7: #{map-get($colors-variations, secondary-lighter-7)};
-  --color-secondary-lighter-8: #{map-get($colors-variations, secondary-lighter-8)};
-  --color-secondary-lighter-9: #{map-get($colors-variations, secondary-lighter-9)};
-  --color-secondary-lighter-10: #{map-get($colors-variations, secondary-lighter-10)};
+  --color-secondary-darker-10: #{map-get(
+      $colors-variations,
+      secondary-darker-10
+    )};
+  --color-secondary-lighter-1: #{map-get(
+      $colors-variations,
+      secondary-lighter-1
+    )};
+  --color-secondary-lighter-2: #{map-get(
+      $colors-variations,
+      secondary-lighter-2
+    )};
+  --color-secondary-lighter-3: #{map-get(
+      $colors-variations,
+      secondary-lighter-3
+    )};
+  --color-secondary-lighter-4: #{map-get(
+      $colors-variations,
+      secondary-lighter-4
+    )};
+  --color-secondary-lighter-5: #{map-get(
+      $colors-variations,
+      secondary-lighter-5
+    )};
+  --color-secondary-lighter-6: #{map-get(
+      $colors-variations,
+      secondary-lighter-6
+    )};
+  --color-secondary-lighter-7: #{map-get(
+      $colors-variations,
+      secondary-lighter-7
+    )};
+  --color-secondary-lighter-8: #{map-get(
+      $colors-variations,
+      secondary-lighter-8
+    )};
+  --color-secondary-lighter-9: #{map-get(
+      $colors-variations,
+      secondary-lighter-9
+    )};
+  --color-secondary-lighter-10: #{map-get(
+      $colors-variations,
+      secondary-lighter-10
+    )};
 
-  --color-bg-primary-darker-1: #{map-get($colors-variations, bg-primary-darker-1)};
-  --color-bg-primary-darker-2: #{map-get($colors-variations, bg-primary-darker-2)};
-  --color-bg-primary-darker-3: #{map-get($colors-variations, bg-primary-darker-3)};
-  --color-bg-primary-darker-4: #{map-get($colors-variations, bg-primary-darker-4)};
-  --color-bg-primary-darker-5: #{map-get($colors-variations, bg-primary-darker-5)};
-  --color-bg-primary-darker-6: #{map-get($colors-variations, bg-primary-darker-6)};
-  --color-bg-primary-darker-7: #{map-get($colors-variations, bg-primary-darker-7)};
-  --color-bg-primary-darker-8: #{map-get($colors-variations, bg-primary-darker-8)};
-  --color-bg-primary-darker-9: #{map-get($colors-variations, bg-primary-darker-9)};
-  --color-bg-primary-darker-10: #{map-get($colors-variations, bg-primary-darker-10)};
-  --color-bg-primary-lighter-1: #{map-get($colors-variations, bg-primary-lighter-1)};
-  --color-bg-primary-lighter-2: #{map-get($colors-variations, bg-primary-lighter-2)};
-  --color-bg-primary-lighter-3: #{map-get($colors-variations, bg-primary-lighter-3)};
-  --color-bg-primary-lighter-4: #{map-get($colors-variations, bg-primary-lighter-4)};
-  --color-bg-primary-lighter-5: #{map-get($colors-variations, bg-primary-lighter-5)};
-  --color-bg-primary-lighter-6: #{map-get($colors-variations, bg-primary-lighter-6)};
-  --color-bg-primary-lighter-7: #{map-get($colors-variations, bg-primary-lighter-7)};
-  --color-bg-primary-lighter-8: #{map-get($colors-variations, bg-primary-lighter-8)};
-  --color-bg-primary-lighter-9: #{map-get($colors-variations, bg-primary-lighter-9)};
-  --color-bg-primary-lighter-10: #{map-get($colors-variations, bg-primary-lighter-10)};
+  --color-bg-primary-darker-1: #{map-get(
+      $colors-variations,
+      bg-primary-darker-1
+    )};
+  --color-bg-primary-darker-2: #{map-get(
+      $colors-variations,
+      bg-primary-darker-2
+    )};
+  --color-bg-primary-darker-3: #{map-get(
+      $colors-variations,
+      bg-primary-darker-3
+    )};
+  --color-bg-primary-darker-4: #{map-get(
+      $colors-variations,
+      bg-primary-darker-4
+    )};
+  --color-bg-primary-darker-5: #{map-get(
+      $colors-variations,
+      bg-primary-darker-5
+    )};
+  --color-bg-primary-darker-6: #{map-get(
+      $colors-variations,
+      bg-primary-darker-6
+    )};
+  --color-bg-primary-darker-7: #{map-get(
+      $colors-variations,
+      bg-primary-darker-7
+    )};
+  --color-bg-primary-darker-8: #{map-get(
+      $colors-variations,
+      bg-primary-darker-8
+    )};
+  --color-bg-primary-darker-9: #{map-get(
+      $colors-variations,
+      bg-primary-darker-9
+    )};
+  --color-bg-primary-darker-10: #{map-get(
+      $colors-variations,
+      bg-primary-darker-10
+    )};
+  --color-bg-primary-lighter-1: #{map-get(
+      $colors-variations,
+      bg-primary-lighter-1
+    )};
+  --color-bg-primary-lighter-2: #{map-get(
+      $colors-variations,
+      bg-primary-lighter-2
+    )};
+  --color-bg-primary-lighter-3: #{map-get(
+      $colors-variations,
+      bg-primary-lighter-3
+    )};
+  --color-bg-primary-lighter-4: #{map-get(
+      $colors-variations,
+      bg-primary-lighter-4
+    )};
+  --color-bg-primary-lighter-5: #{map-get(
+      $colors-variations,
+      bg-primary-lighter-5
+    )};
+  --color-bg-primary-lighter-6: #{map-get(
+      $colors-variations,
+      bg-primary-lighter-6
+    )};
+  --color-bg-primary-lighter-7: #{map-get(
+      $colors-variations,
+      bg-primary-lighter-7
+    )};
+  --color-bg-primary-lighter-8: #{map-get(
+      $colors-variations,
+      bg-primary-lighter-8
+    )};
+  --color-bg-primary-lighter-9: #{map-get(
+      $colors-variations,
+      bg-primary-lighter-9
+    )};
+  --color-bg-primary-lighter-10: #{map-get(
+      $colors-variations,
+      bg-primary-lighter-10
+    )};
 
   --color-primary-contrast: #{map-get($colors, primary-contrast)};
   --color-primary-text: #{map-get($colors, primary-text)};
@@ -101,6 +194,12 @@ h5,
 h6 {
   font-family: map-get($fonts, titles), sans-serif;
   font-weight: 600;
+}
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.5rem;
 }
 ul:not(.list-styled) {
   list-style-type: none;
@@ -159,13 +258,6 @@ img {
 ::-webkit-scrollbar-button:vertical:single-button:increment:hover {
   border-color: #777777 transparent transparent transparent;
 }
-
-// .tablet-hidden {
-//   display: none;
-//   @media (min-width: map-get($breakpoints, tablet-min)) {
-//     display: block;
-//   }
-// }
 
 .body-container {
   @include flex($flex: 1);

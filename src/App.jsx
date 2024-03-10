@@ -1,6 +1,13 @@
-import { RouterProvider, createBrowserRouter, useRouteError } from 'react-router-dom';
-import { MainLayout } from './components/Layouts';
-import { ItemDetailContainer, ItemListContainer } from './components/Items';
+import {
+  RouterProvider,
+  createBrowserRouter,
+  useRouteError,
+} from 'react-router-dom';
+import { MainLayout } from './layouts/MainLayout';
+import { ItemListContainer } from './views/ItemList';
+import { ItemDetailContainer } from './views/ItemDetail';
+import { CartContainer } from './views/Cart';
+import { Checkout } from './views/Checkout';
 
 function ErrorBoundary() {
   const error = useRouteError();
@@ -24,11 +31,19 @@ const router = createBrowserRouter(
           path: 'item/:productId',
           element: <ItemDetailContainer />,
         },
+        {
+          path: 'cart',
+          element: <CartContainer />,
+        },
+        {
+          path: 'checkout',
+          element: <Checkout />,
+        },
       ],
     },
   ],
   {
-    // defines base path
+    // defines base path. Every other path will be child of this one
     basename: '/instalasol-e-commerce',
   },
 );
