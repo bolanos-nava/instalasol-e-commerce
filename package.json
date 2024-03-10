@@ -39,7 +39,9 @@
     "react-router-dom": "^6.22.0",
     "reactstrap": "^9.2.2",
     "sort-by": "^1.2.0",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "sweetalert2": "^11.10.6",
+    "sweetalert2-react-content": "^5.0.7"
   },
   "eslintConfig": {
     "extends": [
