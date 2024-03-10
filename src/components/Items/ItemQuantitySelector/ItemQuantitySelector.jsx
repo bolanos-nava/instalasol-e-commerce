@@ -1,7 +1,7 @@
 import React from 'react';
 import { BasicButton as OperatorButton } from '../../styled-components/BasicButton';
 
-export function ItemCount({
+export function ItemQuantitySelector({
   counter: { count, increment, decrement, min, max },
 }) {
   return (

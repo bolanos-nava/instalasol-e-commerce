@@ -1,5 +1,5 @@
-import { ItemCount } from '../../../components/Items';
-import { AddToCart } from '../../../components/Buttons';
+import { ItemQuantitySelector } from '../../../components/Items';
+import { AddItemButton } from '../../../components/Buttons';
 import { useAddToCart } from '../../../hooks/useAddToCart';
 
 export function ItemDetail({ item }) {
@@ -39,8 +39,8 @@ export function ItemDetail({ item }) {
         <p>${item.price.toFixed(2)}</p>
         <p>{item.description}</p>
         <p>Stock disponible: {item.stock}</p>
-        <ItemCount counter={cartCounter} />
-        <AddToCart
+        <ItemQuantitySelector counter={cartCounter} />
+        <AddItemButton
           css={`
             max-width: 25rem;
           `}

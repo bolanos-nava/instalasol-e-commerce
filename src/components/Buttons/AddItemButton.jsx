@@ -1,6 +1,6 @@
 import { BasicButton } from '../styled-components/BasicButton';
 
-export function AddToCart({ className, cartItem, addToCart, disabled }) {
+export function AddItemButton({ className, cartItem, addToCart, disabled }) {
   return (
     <BasicButton
       className={className}

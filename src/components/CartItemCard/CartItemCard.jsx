@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../../hooks';
-import { ItemCount } from '../Items';
+import { ItemQuantitySelector } from '../Items';
 
 export function CartItemCard({ item }) {
-  const cartCounter = useCart(item.id, item.quantity);
+  const cartCounter = useCart(item.id, item.stock);
 
+  const totalPrice = item.price * cartCounter.count;
   return cartCounter.count ? (
     <div
       className="shadow-default"
@@ -29,17 +30,36 @@ export function CartItemCard({ item }) {
         css={`
           display: flex;
           flex-direction: column;
+          justify-content: space-between;
         `}
       >
-        <h3
+        <div
           css={`
-            white-space: nowrap;
+            flex: 0.6;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
           `}
         >
-          {`${item.brand_name} ${item.name}`}
-        </h3>
-        <p>${item.price.toFixed(2)}</p>
-        <ItemCount counter={cartCounter} />
+          <h3
+            css={`
+              white-space: nowrap;
+            `}
+          >
+            {`${item.brand_name} ${item.name}`}
+          </h3>
+          <p>Precio unitario: ${item.price.toFixed(2)}</p>
+          <ItemQuantitySelector counter={cartCounter} />
+        </div>
+        <div
+          css={`
+            flex: 0.4;
+            display: flex;
+            align-items: flex-end;
+          `}
+        >
+          Subtotal: ${totalPrice.toFixed(2)}
+        </div>
       </div>
     </div>
   ) : null;

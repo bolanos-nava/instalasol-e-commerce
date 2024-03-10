@@ -72,7 +72,9 @@ export function ItemListContainer() {
     <>
       {areCategoriesFetching ? <BootstrapProgress /> : null}
 
-      <h2>{!categoryCode ? 'Todos los productos' : categorySelected.name}</h2>
+      <h1 className="mb-3">
+        {!categoryCode ? 'Todos los productos' : categorySelected.name}
+      </h1>
 
       {areProductsFetching && !areCategoriesFetching ? (
         <BootstrapProgress />

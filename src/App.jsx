@@ -7,6 +7,7 @@ import { MainLayout } from './layouts/MainLayout';
 import { ItemListContainer } from './views/ItemList';
 import { ItemDetailContainer } from './views/ItemDetail';
 import { CartContainer } from './views/Cart';
+import { Checkout } from './views/Checkout';
 
 function ErrorBoundary() {
   const error = useRouteError();
@@ -33,6 +34,10 @@ const router = createBrowserRouter(
         {
           path: 'cart',
           element: <CartContainer />,
+        },
+        {
+          path: 'checkout',
+          element: <Checkout />,
         },
       ],
     },
