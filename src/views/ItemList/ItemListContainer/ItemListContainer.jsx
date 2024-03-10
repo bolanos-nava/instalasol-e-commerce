@@ -43,12 +43,12 @@ export function ItemListContainer() {
         setCategorySelected(currentCategory ?? {});
         categoryFilters = [
           where(
-            'product_category_id',
+            'category_reference',
             '==',
             doc(
               db,
               'categories',
-              currentCategory ? currentCategory.id : 'invalid_category',
+              currentCategory ? currentCategory.id : 'non_existing_category',
             ),
           ),
         ];
@@ -61,12 +61,15 @@ export function ItemListContainer() {
         .then(onFetchFulfilled, onFetchRejected)
         .finally(() => setAreProductsFetching(false));
     }
-  }, [categoryCode, location, areCategoriesFetching, categories]);
+
+    // adding the location.pathname dependency ensures that when the path changes, the view will
+    // fetch the products again
+  }, [categoryCode, location.pathname, areCategoriesFetching, categories]);
 
   useEffect(() => {
     setErrors([]);
     setAreProductsFetching(true);
-  }, [location]);
+  }, [location.pathname]);
 
   return (
     <>

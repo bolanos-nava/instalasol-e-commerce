@@ -1,6 +1,6 @@
 import { useContext, useEffect, useMemo, useState } from 'react';
 import { documentId, where } from 'firebase/firestore';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { fetchCollection } from '../../../utils/utils';
 import { CartContext } from '../../../contexts/CartContext';
 import { ErrorHandler } from '../../../components/Errors';
@@ -10,8 +10,7 @@ import { CartItemCard } from '../../../components/CartItemCard';
 import { BasicButton } from '../../../components/styled-components/BasicButton';
 
 export function CartContainer() {
-  const location = useLocation();
-  const { cart, emptyCart } = useContext(CartContext);
+  const { cart, clearCart } = useContext(CartContext);
   const [errors, setErrors] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
@@ -33,29 +32,36 @@ export function CartContainer() {
     const cartItemIds = Object.keys(cart);
     if (cartItemIds.length) {
       fetchCollection('products', {
-        filters: [where(documentId(), 'in', Object.keys(cart))],
+        filters: [where(documentId(), 'in', cartItemIds)],
       })
         .then(onFetchFulfilled, onFetchRejected)
         .finally(() => setIsFetching(false));
     }
-  }, [location]);
+  }, []);
 
   useEffect(() => {
     const cartItemIds = Object.keys(cart);
+    // setCartItems((prevState) => {
+    //   const val = prevState.filter(({ id: itemId }) =>
+    //     Object.keys(cart).includes(itemId),
+    //   );
+    //   console.log({ val });
+    //   return val;
+    // });
     if (!cartItemIds.length) {
       setIsFetching(false);
       setCartItems([]);
       setErrors([{ message: 'El carrito está vacío', status: 500 }]);
     }
-  }, [location, cart]);
+  }, [cart]);
 
   const totalPrice = useMemo(
     () =>
       cartItems.reduce((accumulator, { id: itemId, price }) => {
-        const subtotal = cart[itemId] * price;
+        const subtotal = cart[itemId] ? cart[itemId] * price : 0;
         return accumulator + subtotal;
       }, 0),
-    [cart, cartItems],
+    [cartItems, cart],
   );
 
   return (
@@ -71,7 +77,7 @@ export function CartContainer() {
       <div className="d-flex flex-column align-items-end gap-1 mt-5">
         <p>Total: ${totalPrice}</p>
         <div className="d-flex justify-end flex-wrap gap-2">
-          <BasicButton disabled={!Object.keys(cart).length} onClick={emptyCart}>
+          <BasicButton disabled={!Object.keys(cart).length} onClick={clearCart}>
             Vaciar carrito
           </BasicButton>
           <BasicButton disabled={!Object.keys(cart).length}>

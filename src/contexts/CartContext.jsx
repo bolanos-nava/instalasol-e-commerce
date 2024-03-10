@@ -23,7 +23,7 @@ function useCartContext() {
       return prevCart;
     });
   }
-  function emptyCart() {
+  function clearCart() {
     setCart([]);
   }
 
@@ -44,7 +44,7 @@ function useCartContext() {
     setItemCount,
     changeQuantityOfItem,
     deleteFromCart,
-    emptyCart,
+    clearCart,
   };
 }
 

@@ -59,8 +59,8 @@ export function NavBar() {
               Categorías
             </DropdownToggle>
             <DropdownMenu>
-              {links.map(({ text, path }) => (
-                <NavLink to={path}>
+              {links.map(({ text, path }, idx) => (
+                <NavLink key={idx} to={path}>
                   {({ isActive }) => (
                     <DropdownItem className={isActive ? 'bg-bg-darker-7' : ''}>
                       {text}
